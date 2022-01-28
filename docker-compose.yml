@@ -1,0 +1,16 @@
+version: '3.1' 
+services: 
+  sonar-server:
+    # platform: linux/amd64 
+    image: mwizner/sonarqube:8.7.1-community
+    ports: 
+      - 9000:9000 
+    
+  sonar-scanner:
+   platform: linux/amd64
+   image: maven:3.6.3-openjdk-8  
+   build: 
+     context: . 
+     dockerfile: Dockerfile 
+   depends_on: 
+     - sonar-server
